@@ -1,0 +1,26 @@
+TITLE: this is an example of a two-level mixture
+regression for a continuous dependent
+variable
+
+DATA: 
+FILE IS Mplus.txt;
+
+VARIABLE: 
+NAMES ARE y0 y1 s;
+USEVARIABLES = y0 y1;
+CLASSES = c (2);
+CLUSTER = s;
+CATEGORICAL = y0 y1;
+
+ANALYSIS: 
+TYPE = TWOLEVEL MIXTURE;
+!TYPE = MIXTURE;
+ESTIMATOR = ML;
+STARTS = 40 20;
+
+MODEL:
+%BETWEEN%
+%OVERALL%
+c#1 @ 100000;
+[c#1@0];
+!OUTPUT: TECH1 TECH8;
